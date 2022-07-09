@@ -15,7 +15,7 @@ public struct Matrices: CustomStringConvertible {
     
     // Create non-square (mxn) matrix
     // See if a null value can be changed in the constructor
-    init(row: Int, column: Int) throws {
+    public init(row: Int, column: Int) throws {
         guard row >= 0 && column >= 0 else {
             throw MatricesError.invalidMatrixSize(minimumSize: 1)
         }
@@ -26,7 +26,7 @@ public struct Matrices: CustomStringConvertible {
     
     // Create square (nxn) matrix
     // Square is a bit ambigious (e.g. dimensions)
-    init(square: Int) throws {
+    public init(square: Int) throws {
         guard square >= 0 else {
             throw MatricesError.invalidMatrixSize(minimumSize: 1)
         }
@@ -54,17 +54,17 @@ public struct Matrices: CustomStringConvertible {
     }
     
     // Zero Matrix: All entries are zero
-    mutating func allZeros() {
+    public mutating func allZeros() {
         allEntries(value: 0)
     }
     
     // Matrix of Ones: All entries are one
-    mutating func allOnes() {
+    public mutating func allOnes() {
         allEntries(value: 1)
     }
     
     // Random entries within defined bounds
-    mutating func random(min: Int, max: Int) {
+    public mutating func random(min: Int, max: Int) {
         for i in 0..<row {
             for j in 0..<column {
                 matrix[i][j] = Int.random(in: min...max)
@@ -74,7 +74,7 @@ public struct Matrices: CustomStringConvertible {
     
     // Identity Matrix (nxn): Ones on the main diagonal and zeroes everywhere else
     // Call the diagonal matrix and expand functionality
-    mutating func identity() throws {
+    public mutating func identity() throws {
         try matrixShapeGuard()
         var j = 0
         for i in 0..<row {
@@ -84,7 +84,7 @@ public struct Matrices: CustomStringConvertible {
     }
     
     // Random Arrowhead Matrix (nxn): Contains all zeroes except on the first row, first column, and main diagonal
-    mutating func randomArrowhead(min: Int, max: Int) throws {
+    public mutating func randomArrowhead(min: Int, max: Int) throws {
         try matrixShapeGuard()
         let k = 0
         var l = 1
@@ -104,7 +104,7 @@ public struct Matrices: CustomStringConvertible {
     }
     
     // Random Diagonal Matrix (mxn): Random entities on main diagonal
-    mutating func randomDiagonal(min: Int, max: Int) {
+    public mutating func randomDiagonal(min: Int, max: Int) {
         for i in 0..<row {
             for j in 0..<column {
                 if (i == j) {
@@ -115,7 +115,7 @@ public struct Matrices: CustomStringConvertible {
     }
     
     // Random Bidiagonal Matrix (mxn): Random entities on main diagonal and either the diagonal above or below
-    mutating func randomBidiagonal(upper: Bool, min: Int, max: Int) {
+    public mutating func randomBidiagonal(upper: Bool, min: Int, max: Int) {
         // Replace one with a variable
         if (upper) {
             for i in 0..<row {
