@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Matrices: CustomStringConvertible {
+public struct Matrices: CustomStringConvertible {
     
     var row: Int
     var column: Int
